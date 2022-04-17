@@ -17,7 +17,7 @@
 		<my-tabbar></my-tabbar>
 
 		<!-- 内容区 -->
-		<my-content>
+		<my-content :goods='goods_new'>
 			<text slot="title">新品上新</text>
 		</my-content>
 		<my-content>
@@ -44,11 +44,17 @@
 		},
 		data() {
 			return {
-
+				goods_new:[]
 			}
 		},
 		onLoad() {
-
+			uni.request({
+				url:'http://127.0.0.1:8000/goods/news',
+				success:(res) =>{
+					console.log(res.data)
+						this.goods_new = res.data
+					}
+			})
 		},
 		methods: {
 

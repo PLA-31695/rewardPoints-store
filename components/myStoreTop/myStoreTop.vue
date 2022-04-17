@@ -11,7 +11,7 @@
 				<text>请登录查看可用积分</text>
 			</view>
 			<view class="search-right">
-				<uni-icons type="search" size="25"></uni-icons>
+				<uni-icons type="search" size="25" @click="search"></uni-icons>
 			</view>
 		</view>
 	</view>
@@ -24,6 +24,14 @@
 			return {
 				
 			};
+		},
+		methods:{
+			search(){
+				uni.navigateTo({
+					url:'../../pages/search/search'
+					
+				})
+			}
 		}
 	}
 </script>
