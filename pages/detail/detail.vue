@@ -1,9 +1,12 @@
 <template>
 	<view class="goods_detail">
-		<view class="detail_top">
+		<!-- <view class="detail_top">
 			<uni-icons type="left" size="20" color="white"></uni-icons>
 			<text>{{goods_detail.goods_name}}</text>
-		</view>
+		</view> -->
+		<my-page-top>
+			<text slot='text'>{{goods_detail.goods_name}}</text>
+		</my-page-top>
 		<view class="detail_product">
 			<view class="product_item">
 				<text>商品</text>
@@ -50,7 +53,11 @@
 
 <script>
 	import {mapState,mapMutations,mapGetters} from 'vuex'
+	import myPageTop from '../../components/myPageTop/myPageTop.vue'
 	export default {
+		components:{
+			myPageTop
+		},
 		computed:{
 			...mapState('m_user',['openid']),
 			...mapState('m_cart',['cart']),
@@ -158,21 +165,6 @@
 <style lang="scss">
 	.goods_detail {
 		position: relative;
-
-		.detail_top {
-			height: 80rpx;
-			color: #FFFFFF;
-			background-color: #252525;
-			line-height: 80rpx;
-			font-weight: bold;
-			text-align: center;
-			padding: 0 20rpx;
-
-			uni-icons {
-				float: left;
-			}
-		}
-
 		.detail_product {
 			height: 80rpx;
 			display: flex;
