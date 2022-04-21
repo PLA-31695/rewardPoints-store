@@ -2,8 +2,13 @@
 	<view class="order">
 		<myPageTop>
 			<text slot='text'>填写订单</text>
-		</myPageTop>
-		<view class="address" @click="chooseAddress">
+		</myPageTop> 
+		<view class="my-address" v-if="address" @click="chooseAddress">
+				<my-address :address="defAddress" :isShow="false" >
+					<uni-icons slot='icon' type="right" size="30" ></uni-icons>
+				</my-address>
+		</view>
+		<view class="address" @click="chooseAddress" v-else>
 			<text>请选择地址</text>
 		</view>
 		<view class="order-info">
@@ -44,21 +49,24 @@
 	import myCartBottom from '../../components/myCartBottom/myCartBottom.vue'
 	import myPageTop from '../../components/myPageTop/myPageTop.vue'
 	import myGoods from '../../components/myGoods/myGoods.vue'
+	import myAddress from '../../components/my-address/my-address.vue'
 	
 	import {mapState,mapGetters} from 'vuex'
 	export default {
 		components:{
 			myPageTop,
 			myGoods,
-			myCartBottom
+			myCartBottom,
+			myAddress
 		},
 		computed:{
 			...mapState('m_cart',['cart']),
-			...mapGetters('m_cart',['getTotalPrice'])
+			...mapGetters('m_cart',['getTotalPrice']),
+			...mapState('m_user',['address'])
 		},
 		data() {
 			return {
-			
+				defAddress:[]
 			};
 		},
 		methods:{
@@ -67,7 +75,11 @@
 					url:'../address/address'
 				})
 			}
+		},
+		onLoad(){
+			this.defAddress.push(this.address[0])
 		}
+		
 	}
 </script>
 

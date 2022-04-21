@@ -1,6 +1,6 @@
 <template>
 	<view class="page-top">
-		<uni-icons type="left" size="20" color="white"></uni-icons>
+		<uni-icons type="left" size="20" color="white" @click="navBack"></uni-icons>
 		<slot name="text"></slot>
 	</view>
 </template>
@@ -12,6 +12,11 @@
 			return {
 
 			};
+		},
+		methods:{
+			navBack(){
+				uni.navigateBack()
+			}
 		}
 	}
 </script>
