@@ -2,10 +2,14 @@ export default {
 	namespaced: true,
 
 	state: {
+		integral:0,
 		openid: '',
 		address: JSON.parse(uni.getStorageSync('address') || '[]')
 	},
 	mutations: {
+		updataIntegral(state, integral) {
+			state.integral = integral
+		},
 		updataOpenId(state, openid) {
 			state.openid = openid
 		},

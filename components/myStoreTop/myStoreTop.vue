@@ -8,7 +8,8 @@
 		<view class="search">
 			<view class="search-left">
 				<image src='../../static/login.png' mode="widthFix"></image>
-				<text>请登录查看可用积分</text>
+				<text v-if='openid'>{{integral}}积分</text>
+				<text v-else>请登录查看可用积分</text>
 			</view>
 			<view class="search-right">
 				<uni-icons type="search" size="25" @click="search"></uni-icons>
@@ -18,7 +19,11 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	export default {
+		computed:{
+			...mapState('m_user',['openid','integral'])
+		},
 		name:"myStoreTop",
 		data() {
 			return {

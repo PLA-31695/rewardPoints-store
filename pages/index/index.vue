@@ -29,6 +29,9 @@
 		<my-content>
 			<text slot="title">精选卡券</text>
 		</my-content>
+		<view class="cart-card" @click="goCart">
+			<uni-icons type="cart" size="35" color="white"></uni-icons>
+		</view>
 	</view>
 </template>
 
@@ -36,7 +39,16 @@
 	import myTabbar from '../../components/myTabbar/myTabbar.vue'
 	import myContent from '../../components/myContent/myContent.vue'
 	import myStoreTop from '../../components/myStoreTop/myStoreTop.vue'
+	
+	import {mapState,mapMutations} from 'vuex'
+	
+	import {nav} from '../../utils/router.js'
+	
 	export default {
+		computed:{
+			...mapState('m_user',['openid'])
+		},
+		
 		components: {
 			myTabbar,
 			myContent,
@@ -57,7 +69,16 @@
 			})
 		},
 		methods: {
-
+			...mapMutations('m_user',['updataOpenId','updataIntegral']),
+			async goCart(){
+				let res = await nav('/pages/cart/cart',this.openid)
+				console.log(res)
+				if(res){
+					this.updataOpenId(res[1].data.openid)
+					this.updataIntegral(res[1].data.integral)
+				}
+				
+			}
 		}
 	}
 </script>
@@ -76,8 +97,17 @@
 				}
 			}
 		}
-
 		// tabbar
-	
+	.cart-card{
+		position: fixed;
+		bottom: 60rpx;
+		right: 30rpx;
+		height: 100rpx;
+		width: 100rpx;
+		border-radius: 50%;
+		background-color: #c6001f;
+		line-height: 100rpx;
+		text-align: center;
+	}
 	}
 </style>

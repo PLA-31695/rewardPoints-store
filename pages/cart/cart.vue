@@ -15,20 +15,6 @@
 			</block>
 		</uni-swipe-action>
 
-		<!-- <view class="cart_bottom">
-			<view class="cart_bottom_left">
-				<radio @click="changeStatus()" :checked="getRadioStatus" /><text>全选</text>
-
-			</view>
-			<view class="cart_bottom_middle">
-				<text>总计：</text>
-				<image src="../../static/gold.png" mode="widthFix"></image>
-				<text>{{getTotalPrice}}</text>
-			</view>
-			<view class="cart_bottom_right">
-				<view class="button" @click="navOrder()">去结算</view>
-			</view>
-		</view> -->
 		<my-cart-bottom>
 			<view class="button" @click="navOrder()" slot='button'>去结算</view>
 		</my-cart-bottom>

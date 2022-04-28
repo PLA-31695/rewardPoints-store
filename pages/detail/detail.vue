@@ -1,9 +1,5 @@
 <template>
 	<view class="goods_detail">
-		<!-- <view class="detail_top">
-			<uni-icons type="left" size="20" color="white"></uni-icons>
-			<text>{{goods_detail.goods_name}}</text>
-		</view> -->
 		<my-page-top>
 			<text slot='text'>{{goods_detail.goods_name}}</text>
 		</my-page-top>
@@ -109,16 +105,16 @@
 		onShow() {
 		},
 		methods: {
-			...mapMutations('m_user',['updataOpenId']),
+			...mapMutations('m_user',['updataOpenId','updataIntegral']),
 			...mapMutations('m_cart',['updateCart','addCart']),
 			onClick(e) {
-				uni.showToast({
-					title: `点击${e.content.text}`,
-					icon: 'none'
-				})
 				if(e.content.text === '购物车'){
 					uni.navigateTo({
 						url:'../cart/cart'
+					})
+				}else{
+					uni.navigateTo({
+						url:'../index/index'
 					})
 				}
 			},
@@ -144,12 +140,12 @@
 								data: {
 									user_info: res.rawData,
 									user_code: result[1].code
-									
 								},
 								success: (res) => {
 									console.log(res)
 									if(res.data.openid){
 										this.updataOpenId(res.data.openid)
+										this.updataIntegral(res.data.integral)
 									}
 								}
 							})
